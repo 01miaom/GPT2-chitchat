@@ -13,7 +13,8 @@ from torch.nn import CrossEntropyLoss
 from tqdm import tqdm
 from torch.nn import DataParallel
 import transformers
-import pickle
+#import pickle
+import joblib
 import sys
 from pytorchtools import EarlyStopping
 from sklearn.model_selection import train_test_split
@@ -123,7 +124,7 @@ def load_dataset(logger, args):
     train_path = args.train_path
 
     with open(train_path, "rb") as f:
-        input_list = pickle.load(f)
+        input_list = joblib.load(f)
 
     # 划分训练集与验证集
     val_num = args.val_num
