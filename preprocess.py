@@ -3,7 +3,8 @@ from transformers import BertTokenizer
 from transformers import BertTokenizerFast
 import argparse
 import pandas as pd
-import pickle
+#import pickle
+import joblib
 import jieba.analyse
 from tqdm import tqdm
 from transformers import GPT2TokenizerFast, GPT2LMHeadModel
@@ -91,7 +92,7 @@ def preprocess():
     len_median = np.median(dialogue_len)
     len_max = np.max(dialogue_len)
     with open(args.save_path, "wb") as f:
-        pickle.dump(dialogue_list, f)
+        joblib.dump(dialogue_list, f)
     logger.info("finish preprocessing data,the result is stored in {}".format(args.save_path))
     logger.info("mean of dialogue len:{},median of dialogue len:{},max len:{}".format(len_mean, len_median, len_max))
 
